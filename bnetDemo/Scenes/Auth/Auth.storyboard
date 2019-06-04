@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dQG-gk-oeC">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Auth View Controller-->
+        <scene sceneID="lzJ-T5-nJp">
+            <objects>
+                <viewController id="dQG-gk-oeC" customClass="AuthViewController" customModule="bnetDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YY0-Ek-pmE"/>
+                        <viewControllerLayoutGuide type="bottom" id="i6T-a2-EnC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SL6-qi-RVB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qBp-9u-99M">
+                                <rect key="frame" x="109" y="420" width="196" height="57"/>
+                                <color key="backgroundColor" red="0.93446809053421021" green="0.25472870469093323" blue="0.025740830227732658" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Получить сессию">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="getSessionButtonPressed:" destination="dQG-gk-oeC" eventType="touchUpInside" id="wzX-sz-OGl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="i6T-a2-EnC" firstAttribute="top" secondItem="qBp-9u-99M" secondAttribute="bottom" constant="385" id="03O-OF-Kkq"/>
+                            <constraint firstItem="qBp-9u-99M" firstAttribute="leading" secondItem="SL6-qi-RVB" secondAttribute="leading" constant="109" id="Zfy-V6-nA8"/>
+                            <constraint firstItem="qBp-9u-99M" firstAttribute="top" secondItem="YY0-Ek-pmE" secondAttribute="bottom" constant="376" id="Zn3-UB-JrH"/>
+                            <constraint firstAttribute="trailing" secondItem="qBp-9u-99M" secondAttribute="trailing" constant="109" id="g8I-bp-iMM"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QpQ-Nc-Qzk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.23188405797103" y="15.401785714285714"/>
+        </scene>
+    </scenes>
+</document>
