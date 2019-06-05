@@ -27,10 +27,11 @@ class AuthInteractor: AuthBusinessLogic, AuthDataStore {
         case .getSession:
             fetcher.getSession { [weak self] (response, error) in
                 if let response = response {
-                    self?.session = response.data.session
+                    if let data = response.data {
+                        self?.session = data.session
+                    }
                     self?.presenter?.presentData(response: Auth.Model.Response.ResponseType.presentSession(response: response, error: nil))
                 } else {
-                    print("В интеракторе взглянем error \(error)")
                     self?.presenter?.presentData(response: Auth.Model.Response.ResponseType.presentSession(response: nil, error: error))
                 }
             }

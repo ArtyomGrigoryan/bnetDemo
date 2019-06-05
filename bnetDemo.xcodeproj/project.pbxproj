@@ -28,6 +28,12 @@
 		2B0BA9E522A6B89B007A109B /* RecordsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0BA9DE22A6B89B007A109B /* RecordsListViewController.swift */; };
 		2B0BA9E622A6B89B007A109B /* RecordsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0BA9DF22A6B89B007A109B /* RecordsListInteractor.swift */; };
 		2B0BA9E922A6BA6E007A109B /* Records.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B0BA9E822A6BA6E007A109B /* Records.storyboard */; };
+		2B27559122A83FE700E74209 /* CreateRecordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27558A22A83FE700E74209 /* CreateRecordPresenter.swift */; };
+		2B27559222A83FE700E74209 /* CreateRecordWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27558B22A83FE700E74209 /* CreateRecordWorker.swift */; };
+		2B27559322A83FE700E74209 /* CreateRecordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27558C22A83FE700E74209 /* CreateRecordRouter.swift */; };
+		2B27559422A83FE700E74209 /* CreateRecordModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27558D22A83FE700E74209 /* CreateRecordModels.swift */; };
+		2B27559522A83FE700E74209 /* CreateRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27558E22A83FE700E74209 /* CreateRecordViewController.swift */; };
+		2B27559622A83FE700E74209 /* CreateRecordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27558F22A83FE700E74209 /* CreateRecordInteractor.swift */; };
 		622D5E7FC146CDFC2575716C /* Pods_bnetDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1189F209280936A008E9161 /* Pods_bnetDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +61,12 @@
 		2B0BA9DE22A6B89B007A109B /* RecordsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsListViewController.swift; sourceTree = "<group>"; };
 		2B0BA9DF22A6B89B007A109B /* RecordsListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsListInteractor.swift; sourceTree = "<group>"; };
 		2B0BA9E822A6BA6E007A109B /* Records.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Records.storyboard; sourceTree = "<group>"; };
+		2B27558A22A83FE700E74209 /* CreateRecordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecordPresenter.swift; sourceTree = "<group>"; };
+		2B27558B22A83FE700E74209 /* CreateRecordWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecordWorker.swift; sourceTree = "<group>"; };
+		2B27558C22A83FE700E74209 /* CreateRecordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecordRouter.swift; sourceTree = "<group>"; };
+		2B27558D22A83FE700E74209 /* CreateRecordModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecordModels.swift; sourceTree = "<group>"; };
+		2B27558E22A83FE700E74209 /* CreateRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecordViewController.swift; sourceTree = "<group>"; };
+		2B27558F22A83FE700E74209 /* CreateRecordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecordInteractor.swift; sourceTree = "<group>"; };
 		AB8DAEE6CE726BE9207101FD /* Pods-bnetDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bnetDemo.debug.xcconfig"; path = "Target Support Files/Pods-bnetDemo/Pods-bnetDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		BCD7A95DC629B27D57898550 /* Pods-bnetDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bnetDemo.release.xcconfig"; path = "Target Support Files/Pods-bnetDemo/Pods-bnetDemo.release.xcconfig"; sourceTree = "<group>"; };
 		E1189F209280936A008E9161 /* Pods_bnetDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bnetDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,8 +160,9 @@
 		2B0BA9D822A6B86C007A109B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				2B0BA9C222A69464007A109B /* Auth */,
+				2B27559822A83FEF00E74209 /* CreateRecord */,
 				2B0BA9D922A6B885007A109B /* RecordsList */,
+				2B0BA9C222A69464007A109B /* Auth */,
 				2B0BA9E822A6BA6E007A109B /* Records.storyboard */,
 			);
 			path = Scenes;
@@ -165,6 +178,19 @@
 				2B0BA9DD22A6B89B007A109B /* RecordsListModels.swift */,
 			);
 			path = RecordsList;
+			sourceTree = "<group>";
+		};
+		2B27559822A83FEF00E74209 /* CreateRecord */ = {
+			isa = PBXGroup;
+			children = (
+				2B27558E22A83FE700E74209 /* CreateRecordViewController.swift */,
+				2B27558F22A83FE700E74209 /* CreateRecordInteractor.swift */,
+				2B27558A22A83FE700E74209 /* CreateRecordPresenter.swift */,
+				2B27558D22A83FE700E74209 /* CreateRecordModels.swift */,
+				2B27558C22A83FE700E74209 /* CreateRecordRouter.swift */,
+				2B27558B22A83FE700E74209 /* CreateRecordWorker.swift */,
+			);
+			path = CreateRecord;
 			sourceTree = "<group>";
 		};
 		38B1027615F123924511B31F /* Pods */ = {
@@ -307,12 +333,17 @@
 			files = (
 				2B0BA9BE22A6943E007A109B /* AuthModels.swift in Sources */,
 				2B0BA9E122A6B89B007A109B /* RecordsListPresenter.swift in Sources */,
+				2B27559222A83FE700E74209 /* CreateRecordWorker.swift in Sources */,
+				2B27559622A83FE700E74209 /* CreateRecordInteractor.swift in Sources */,
+				2B27559322A83FE700E74209 /* CreateRecordRouter.swift in Sources */,
 				2B0BA9BB22A6943E007A109B /* AuthPresenter.swift in Sources */,
 				2B0BA9E622A6B89B007A109B /* RecordsListInteractor.swift in Sources */,
 				2B0BA9D122A6A087007A109B /* Connectivity.swift in Sources */,
 				2B0BA9E422A6B89B007A109B /* RecordsListModels.swift in Sources */,
 				2B0BA9D622A6AC9C007A109B /* Response.swift in Sources */,
 				2B0BA9E522A6B89B007A109B /* RecordsListViewController.swift in Sources */,
+				2B27559522A83FE700E74209 /* CreateRecordViewController.swift in Sources */,
+				2B27559422A83FE700E74209 /* CreateRecordModels.swift in Sources */,
 				2B0BA9E322A6B89B007A109B /* RecordsListRouter.swift in Sources */,
 				2B0BA9D422A6A154007A109B /* NetworkDataFetcher.swift in Sources */,
 				2B0BA9BF22A6943E007A109B /* AuthViewController.swift in Sources */,
@@ -320,6 +351,7 @@
 				2B0BA9CF22A69FF5007A109B /* NetworkService.swift in Sources */,
 				2B0BA9C022A6943E007A109B /* AuthInteractor.swift in Sources */,
 				2B0BA9BD22A6943E007A109B /* AuthRouter.swift in Sources */,
+				2B27559122A83FE700E74209 /* CreateRecordPresenter.swift in Sources */,
 				2B0BA9A322A69313007A109B /* AppDelegate.swift in Sources */,
 				2B0BA9C822A69DCD007A109B /* API.swift in Sources */,
 			);
@@ -452,7 +484,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QMVZ37K9BV;
 				INFOPLIST_FILE = bnetDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -472,7 +504,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QMVZ37K9BV;
 				INFOPLIST_FILE = bnetDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

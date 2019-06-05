@@ -9,8 +9,10 @@
 import Foundation
 
 struct SessionResponse: Decodable {
-    let data: Session
+    let data: Session?
     let status: Int
+    let error: String?
+    
 }
 
 struct Session: Decodable {

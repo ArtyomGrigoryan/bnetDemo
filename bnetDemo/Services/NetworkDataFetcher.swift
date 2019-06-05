@@ -23,17 +23,13 @@ struct NetworkDataFetcher: DataFetcher {
     func getSession(completion: @escaping (SessionResponse?, String?) -> Void) {
         let parameters = ["a": API.newsSession]
 
-        networking.request(params: parameters, header: header) { (data, error) in
+        networking.request(params: parameters, header: header) { (json, error) in
             if let error = error {
                 completion(nil, error)
             } else {
+                let data = try? JSONSerialization.data(withJSONObject: json as Any)
                 let decoded = self.decodeJSON(type: SessionResponse.self, from: data)
-                //если был передан неверный токен, то
-                if decoded == nil {
-                    completion(nil, "Invalid token")
-                } else {
-                    completion(decoded, nil)
-                }
+                completion(decoded, nil)
             }
         }
     }

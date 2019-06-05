@@ -8,20 +8,30 @@
 
 import UIKit
 
-protocol RecordsListRoutingLogic {
-
+@objc protocol RecordsListRoutingLogic {
+    func routeToCreateRecord(segue: UIStoryboardSegue)
 }
 
 protocol RecordsListDataPassing {
     var dataStore: RecordsListDataStore? { get }
-    
 }
 
 class RecordsListRouter: NSObject, RecordsListRoutingLogic, RecordsListDataPassing {
-    
+
     var dataStore: RecordsListDataStore?
     weak var viewController: RecordsListViewController?
   
-    // MARK: Routing
+    // MARK: - Routing
   
+    func routeToCreateRecord(segue: UIStoryboardSegue) {
+        let nvc = segue.destination as! UINavigationController
+        let dvc = nvc.topViewController as! CreateRecordViewController
+        var destinationDS = dvc.router!.dataStore!
+        passDataToCreateRecord(source: dataStore!, destination: &destinationDS)
+    }
+    
+    //из какого источника данных в какой
+    func passDataToCreateRecord(source: RecordsListDataStore, destination: inout CreateRecordDataStore) {
+        destination.session = source.session
+    }
 }

@@ -57,24 +57,18 @@ class AuthViewController: UIViewController, AuthDisplayLogic {
         switch viewModel {
         case .displaySession(let viewModel):
             if viewModel.session == nil {
-                print(viewModel.errorMessage)
-                print("Мы дисплей дате первого контроллера. Сессия равна нулю")
+                errorAlert(title: viewModel.errorTitle!, message: viewModel.errorMessage!)
             } else {
-                print("Мы дисплей дате первого контроллера. Сессия равна чему-то там")
                 router?.routeToRecordsList(segue: nil)
             }
         }
     }
     
-    func errorAlert(title: String, message: String, actionTitle: String) {
+    func errorAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let closeAction = UIAlertAction(title: "OK", style: .default)
         
-        let updateAction = UIAlertAction(title: actionTitle, style: .default) { [weak self] (_) in
-            //guard let self = self else { return }
-            //self.checkInternetConnection()
-        }
-        
-        alertController.addAction(updateAction)
+        alertController.addAction(closeAction)
         
         present(alertController, animated: true)
     }
