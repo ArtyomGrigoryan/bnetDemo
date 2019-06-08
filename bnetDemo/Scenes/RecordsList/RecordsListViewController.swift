@@ -16,6 +16,7 @@ class RecordsListViewController: UITableViewController, RecordsListDisplayLogic 
 
     var interactor: RecordsListBusinessLogic?
     var router: (NSObjectProtocol & RecordsListRoutingLogic & RecordsListDataPassing)?
+    private var recordsViewModel = RecordsViewModel(cells: [])
 
     // MARK: - Object lifecycle
 
@@ -54,11 +55,32 @@ class RecordsListViewController: UITableViewController, RecordsListDisplayLogic 
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.estimatedRowHeight = UITableView.automaticDimension
     }
 
     func displayData(viewModel: RecordsList.Model.ViewModel.ViewModelData) {
-
+        switch viewModel {
+        case .displayRecords(let recordsViewModel):
+            self.recordsViewModel = recordsViewModel
+            tableView.reloadData()
+        }
     }
     
-    @IBAction func unwind(segue: UIStoryboardSegue) {}
+    @IBAction func unwind(segue: UIStoryboardSegue) {
+        interactor?.makeRequest(request: .getRecords)
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return recordsViewModel.cells.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: RecordsListTableViewCell.self), for: indexPath) as! RecordsListTableViewCell
+        let cellViewModel = recordsViewModel.cells[indexPath.row]
+        
+        cell.set(viewModel: cellViewModel)
+        
+        return cell
+    }
 }

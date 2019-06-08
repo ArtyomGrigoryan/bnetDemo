@@ -63,8 +63,7 @@ class CreateRecordViewController: UIViewController, CreateRecordDisplayLogic {
         case .presentError(let error):
             errorAlert(title: error)
         case .success:
-            print("success")
-            router?.routeToRecordsList(segue: nil)
+            performSegue(withIdentifier: "RecordsList", sender: nil)
         }
     }
     

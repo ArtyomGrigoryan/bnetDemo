@@ -31,7 +31,3 @@ enum Auth {
         }
     }
 }
-//
-//struct SessionViewModel {
-//    let errorTitle: String?
-//}

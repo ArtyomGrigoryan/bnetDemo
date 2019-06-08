@@ -12,20 +12,30 @@ enum RecordsList {
     enum Model {
         struct Request {
             enum RequestType {
-              
+                case getRecords
             }
         }
     
         struct Response {
             enum ResponseType {
-
+                case presentRecords(records: ServerResponse2)
             }
         }
     
         struct ViewModel {
             enum ViewModelData {
-                
+                case displayRecords(recordsViewModel: RecordsViewModel)
             }
         }
     }
+}
+
+struct RecordsViewModel {
+    struct Cell: RecordsListCellViewModel {
+        var body: String
+        var da: Date
+        var dm: Date
+    }
+   
+    let cells: [Cell]
 }

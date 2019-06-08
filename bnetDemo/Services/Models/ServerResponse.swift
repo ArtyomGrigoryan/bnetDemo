@@ -18,3 +18,20 @@ struct ResponseData: Decodable {
     let session: String?
     let id: String?
 }
+
+struct ServerResponse2Wrapped: Decodable {
+    let response: ServerResponse2
+}
+
+struct ServerResponse2: Decodable {
+    let data: [[ResponseData2]]
+    let error: String?
+    let status: Int
+}
+
+struct ResponseData2: Decodable {
+    let id: String
+    let body: String
+    let da: String
+    let dm: String
+}

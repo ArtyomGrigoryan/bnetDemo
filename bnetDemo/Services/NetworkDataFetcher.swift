@@ -10,6 +10,7 @@ import Foundation
 
 protocol DataFetcher {
     func addNewRecord(session: String, userText: String, completion: @escaping (ServerResponse?, String?) -> Void)
+    func getRecords(session: String, completion: @escaping (ServerResponse2?, String?) -> Void)
     func getSession(completion: @escaping (ServerResponse?, String?) -> Void)
 }
 
@@ -19,6 +20,21 @@ struct NetworkDataFetcher: DataFetcher {
     
     init(networking: Networking) {
         self.networking = networking
+    }
+    
+    func getRecords(session: String, completion: @escaping (ServerResponse2?, String?) -> Void) {
+        let parameters = ["a": API.getEntries,
+                          "session": session]
+        
+        networking.request(params: parameters, header: header) { (json, error) in
+            if let error = error {
+                completion(nil, error)
+            } else {
+                let data = try? JSONSerialization.data(withJSONObject: json as Any)
+                let decoded = self.decodeJSON(type: ServerResponse2.self, from: data)
+                completion(decoded, nil)
+            }
+        }
     }
     
     func addNewRecord(session: String, userText: String, completion: @escaping (ServerResponse?, String?) -> Void) {

@@ -9,6 +9,6 @@
 struct API {
     static let host = "https://bnet.i-partner.ru/testAPI/"
     static let newsSession = "new_session"
-    static let addEntry = "add_entry"
     static let getEntries = "get_entries"
+    static let addEntry = "add_entry"
 }

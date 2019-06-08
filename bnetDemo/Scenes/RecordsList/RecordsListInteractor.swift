@@ -18,10 +18,17 @@ protocol RecordsListDataStore {
 
 class RecordsListInteractor: RecordsListBusinessLogic, RecordsListDataStore {
 
-    var presenter: RecordsListPresentationLogic?
     var session: String = ""
+    var presenter: RecordsListPresentationLogic?
+    private var fetcher: DataFetcher = NetworkDataFetcher(networking: NetworkService())
   
     func makeRequest(request: RecordsList.Model.Request.RequestType) {
-
+        switch request {
+        case .getRecords:
+            fetcher.getRecords(session: session) { [weak self] (response, error) in
+                guard let self = self, let response = response else { return }
+                self.presenter?.presentData(response: .presentRecords(records: response))
+            }
+        }
     }
 }

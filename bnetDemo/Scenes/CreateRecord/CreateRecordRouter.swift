@@ -9,7 +9,7 @@
 import UIKit
 
 @objc protocol CreateRecordRoutingLogic {
-    func routeToRecordsList(segue: UIStoryboardSegue?)
+
 }
 
 protocol CreateRecordDataPassing {
@@ -18,12 +18,8 @@ protocol CreateRecordDataPassing {
 
 class CreateRecordRouter: NSObject, CreateRecordRoutingLogic, CreateRecordDataPassing {
 
-    weak var viewController: CreateRecordViewController?
     var dataStore: CreateRecordDataStore?
-    
+    weak var viewController: CreateRecordViewController?
+   
     // MARK: - Routing
-  
-    func routeToRecordsList(segue: UIStoryboardSegue?) {
-     
-    }
 }
