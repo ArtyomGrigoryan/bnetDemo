@@ -21,7 +21,7 @@
 		2B0BA9CF22A69FF5007A109B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0BA9CE22A69FF5007A109B /* NetworkService.swift */; };
 		2B0BA9D122A6A087007A109B /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0BA9D022A6A087007A109B /* Connectivity.swift */; };
 		2B0BA9D422A6A154007A109B /* NetworkDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0BA9D322A6A154007A109B /* NetworkDataFetcher.swift */; };
-		2B0BA9D622A6AC9C007A109B /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0BA9D522A6AC9C007A109B /* Response.swift */; };
+		2B0BA9D622A6AC9C007A109B /* ServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0BA9D522A6AC9C007A109B /* ServerResponse.swift */; };
 		2B0BA9E122A6B89B007A109B /* RecordsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0BA9DA22A6B89B007A109B /* RecordsListPresenter.swift */; };
 		2B0BA9E322A6B89B007A109B /* RecordsListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0BA9DC22A6B89B007A109B /* RecordsListRouter.swift */; };
 		2B0BA9E422A6B89B007A109B /* RecordsListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0BA9DD22A6B89B007A109B /* RecordsListModels.swift */; };
@@ -54,7 +54,7 @@
 		2B0BA9CE22A69FF5007A109B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		2B0BA9D022A6A087007A109B /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		2B0BA9D322A6A154007A109B /* NetworkDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataFetcher.swift; sourceTree = "<group>"; };
-		2B0BA9D522A6AC9C007A109B /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		2B0BA9D522A6AC9C007A109B /* ServerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerResponse.swift; sourceTree = "<group>"; };
 		2B0BA9DA22A6B89B007A109B /* RecordsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsListPresenter.swift; sourceTree = "<group>"; };
 		2B0BA9DC22A6B89B007A109B /* RecordsListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsListRouter.swift; sourceTree = "<group>"; };
 		2B0BA9DD22A6B89B007A109B /* RecordsListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsListModels.swift; sourceTree = "<group>"; };
@@ -152,7 +152,7 @@
 		2B0BA9D722A6AF4F007A109B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2B0BA9D522A6AC9C007A109B /* Response.swift */,
+				2B0BA9D522A6AC9C007A109B /* ServerResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -174,8 +174,8 @@
 				2B0BA9DE22A6B89B007A109B /* RecordsListViewController.swift */,
 				2B0BA9DF22A6B89B007A109B /* RecordsListInteractor.swift */,
 				2B0BA9DA22A6B89B007A109B /* RecordsListPresenter.swift */,
-				2B0BA9DC22A6B89B007A109B /* RecordsListRouter.swift */,
 				2B0BA9DD22A6B89B007A109B /* RecordsListModels.swift */,
+				2B0BA9DC22A6B89B007A109B /* RecordsListRouter.swift */,
 			);
 			path = RecordsList;
 			sourceTree = "<group>";
@@ -340,7 +340,7 @@
 				2B0BA9E622A6B89B007A109B /* RecordsListInteractor.swift in Sources */,
 				2B0BA9D122A6A087007A109B /* Connectivity.swift in Sources */,
 				2B0BA9E422A6B89B007A109B /* RecordsListModels.swift in Sources */,
-				2B0BA9D622A6AC9C007A109B /* Response.swift in Sources */,
+				2B0BA9D622A6AC9C007A109B /* ServerResponse.swift in Sources */,
 				2B0BA9E522A6B89B007A109B /* RecordsListViewController.swift in Sources */,
 				2B27559522A83FE700E74209 /* CreateRecordViewController.swift in Sources */,
 				2B27559422A83FE700E74209 /* CreateRecordModels.swift in Sources */,

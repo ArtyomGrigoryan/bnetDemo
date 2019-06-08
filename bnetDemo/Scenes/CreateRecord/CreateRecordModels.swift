@@ -12,19 +12,21 @@ enum CreateRecord {
     enum Model {
         struct Request {
             enum RequestType {
-                case some
+                case passUserText(userText: String)
             }
         }
     
         struct Response {
             enum ResponseType {
-                case some
+                case success
+                case error(error: String)
             }
         }
     
         struct ViewModel {
             enum ViewModelData {
-                case some
+                case success
+                case presentError(error: String)
             }
         }
     }

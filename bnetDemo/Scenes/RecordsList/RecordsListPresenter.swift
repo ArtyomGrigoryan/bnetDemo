@@ -16,10 +16,6 @@ class RecordsListPresenter: RecordsListPresentationLogic {
     weak var viewController: RecordsListDisplayLogic?
   
     func presentData(response: RecordsList.Model.Response.ResponseType) {
-        switch response {
-        case .presentSession(let response):
-            let viewModel = SessionViewModel(session: response, errorTitle: nil, errorMessage: nil)
-            viewController?.displayData(viewModel: .displaySession(sessionViewModel: viewModel))
-        }
+
     }
 }

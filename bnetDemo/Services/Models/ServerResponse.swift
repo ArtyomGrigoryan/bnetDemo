@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct SessionResponse: Decodable {
-    let data: Session?
-    let status: Int
+struct ServerResponse: Decodable {
+    let data: ResponseData?
     let error: String?
-    
+    let status: Int
 }
 
-struct Session: Decodable {
-    let session: String
+struct ResponseData: Decodable {
+    let session: String?
+    let id: String?
 }

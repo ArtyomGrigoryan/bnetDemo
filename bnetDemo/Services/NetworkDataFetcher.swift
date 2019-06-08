@@ -9,7 +9,8 @@
 import Foundation
 
 protocol DataFetcher {
-    func getSession(completion: @escaping (SessionResponse?, String?) -> Void)
+    func addNewRecord(session: String, userText: String, completion: @escaping (ServerResponse?, String?) -> Void)
+    func getSession(completion: @escaping (ServerResponse?, String?) -> Void)
 }
 
 struct NetworkDataFetcher: DataFetcher {
@@ -20,7 +21,23 @@ struct NetworkDataFetcher: DataFetcher {
         self.networking = networking
     }
     
-    func getSession(completion: @escaping (SessionResponse?, String?) -> Void) {
+    func addNewRecord(session: String, userText: String, completion: @escaping (ServerResponse?, String?) -> Void) {
+        let parameters = ["a": API.addEntry,
+                          "session": session,
+                          "body": userText]
+        
+        networking.request(params: parameters, header: header) { (json, error) in
+            if let error = error {
+                completion(nil, error)
+            } else {
+                let data = try? JSONSerialization.data(withJSONObject: json as Any)
+                let decoded = self.decodeJSON(type: ServerResponse.self, from: data)
+                completion(decoded, nil)
+            }
+        }
+    }
+    
+    func getSession(completion: @escaping (ServerResponse?, String?) -> Void) {
         let parameters = ["a": API.newsSession]
 
         networking.request(params: parameters, header: header) { (json, error) in
@@ -28,7 +45,7 @@ struct NetworkDataFetcher: DataFetcher {
                 completion(nil, error)
             } else {
                 let data = try? JSONSerialization.data(withJSONObject: json as Any)
-                let decoded = self.decodeJSON(type: SessionResponse.self, from: data)
+                let decoded = self.decodeJSON(type: ServerResponse.self, from: data)
                 completion(decoded, nil)
             }
         }

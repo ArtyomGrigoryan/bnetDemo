@@ -16,6 +16,11 @@ class CreateRecordPresenter: CreateRecordPresentationLogic {
     weak var viewController: CreateRecordDisplayLogic?
   
     func presentData(response: CreateRecord.Model.Response.ResponseType) {
-  
+        switch response {
+        case .success:
+             viewController?.displayData(viewModel: CreateRecord.Model.ViewModel.ViewModelData.success)
+        case .error(let error):
+            viewController?.displayData(viewModel: CreateRecord.Model.ViewModel.ViewModelData.presentError(error: error))
+        }
     }
 }

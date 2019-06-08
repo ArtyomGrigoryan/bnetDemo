@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol CreateRecordRoutingLogic {
-
+@objc protocol CreateRecordRoutingLogic {
+    func routeToRecordsList(segue: UIStoryboardSegue?)
 }
 
 protocol CreateRecordDataPassing {
@@ -23,4 +23,7 @@ class CreateRecordRouter: NSObject, CreateRecordRoutingLogic, CreateRecordDataPa
     
     // MARK: - Routing
   
+    func routeToRecordsList(segue: UIStoryboardSegue?) {
+     
+    }
 }

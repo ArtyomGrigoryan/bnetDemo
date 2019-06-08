@@ -18,20 +18,20 @@ enum Auth {
     
         struct Response {
             enum ResponseType {
-                case presentSession(response: SessionResponse?, error: String?)
+                case success
+                case error(error: String)
             }
         }
     
         struct ViewModel {
             enum ViewModelData {
-                case displaySession(sessionViewModel: SessionViewModel)
+                case success
+                case error(errorTitle: String)
             }
         }
     }
 }
-
-struct SessionViewModel {
-    let session: String?
-    let errorTitle: String?
-    let errorMessage: String?
-}
+//
+//struct SessionViewModel {
+//    let errorTitle: String?
+//}

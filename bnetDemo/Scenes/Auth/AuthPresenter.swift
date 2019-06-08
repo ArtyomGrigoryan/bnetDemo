@@ -13,23 +13,15 @@ protocol AuthPresentationLogic {
 }
 
 class AuthPresenter: AuthPresentationLogic {
+    
     weak var viewController: AuthDisplayLogic?
-    var viewModel: SessionViewModel?
   
     func presentData(response: Auth.Model.Response.ResponseType) {
         switch response {
-        case .presentSession(let response, let error):
-            if let response = response {
-                if let error = response.error {
-                    viewModel = SessionViewModel(session: response.data?.session, errorTitle: "Ошибка", errorMessage: error)
-                } else {
-                    viewModel = SessionViewModel(session: response.data?.session, errorTitle: nil, errorMessage: nil)
-                }
-            //данный код будет вызван только в том случае, если отсутствует интернет-соединение
-            } else {
-                viewModel = SessionViewModel(session: nil, errorTitle: error, errorMessage: "Повторите попытку.")
-            }
-            viewController?.displayData(viewModel: .displaySession(sessionViewModel: viewModel!))
+        case .success:
+            viewController?.displayData(viewModel: .success)
+        case .error(let error):
+            viewController?.displayData(viewModel: .error(errorTitle: error))
         }
     }
 }

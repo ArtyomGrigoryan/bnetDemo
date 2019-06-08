@@ -38,11 +38,7 @@ class AuthViewController: UIViewController, AuthDisplayLogic {
         router.viewController     = viewController
         router.dataStore          = interactor
     }
-  
-    // MARK: Routing
-  
 
-  
     // MARK: View lifecycle
   
     override func viewDidLoad() {
@@ -55,17 +51,15 @@ class AuthViewController: UIViewController, AuthDisplayLogic {
   
     func displayData(viewModel: Auth.Model.ViewModel.ViewModelData) {
         switch viewModel {
-        case .displaySession(let viewModel):
-            if viewModel.session == nil {
-                errorAlert(title: viewModel.errorTitle!, message: viewModel.errorMessage!)
-            } else {
-                router?.routeToRecordsList(segue: nil)
-            }
+        case .success:
+            router?.routeToRecordsList(segue: nil)
+        case .error(let errorTitle):
+            errorAlert(title: errorTitle)
         }
     }
     
-    func errorAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    func errorAlert(title: String) {
+        let alertController = UIAlertController(title: title, message: "Повторите попытку.", preferredStyle: .alert)
         let closeAction = UIAlertAction(title: "OK", style: .default)
         
         alertController.addAction(closeAction)

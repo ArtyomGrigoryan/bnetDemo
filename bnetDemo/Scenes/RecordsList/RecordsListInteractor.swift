@@ -22,9 +22,6 @@ class RecordsListInteractor: RecordsListBusinessLogic, RecordsListDataStore {
     var session: String = ""
   
     func makeRequest(request: RecordsList.Model.Request.RequestType) {
-        switch request {
-        case .getSession:
-            presenter?.presentData(response: RecordsList.Model.Response.ResponseType.presentSession(session: session))
-        }
+
     }
 }

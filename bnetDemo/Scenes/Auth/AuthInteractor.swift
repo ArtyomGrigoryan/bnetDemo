@@ -28,11 +28,14 @@ class AuthInteractor: AuthBusinessLogic, AuthDataStore {
             fetcher.getSession { [weak self] (response, error) in
                 if let response = response {
                     if let data = response.data {
-                        self?.session = data.session
+                        self?.session = data.session!
+                        self?.presenter?.presentData(response: Auth.Model.Response.ResponseType.success)
+                    } else if let error = response.error {
+                        self?.presenter?.presentData(response: Auth.Model.Response.ResponseType.error(error: error))
                     }
-                    self?.presenter?.presentData(response: Auth.Model.Response.ResponseType.presentSession(response: response, error: nil))
+                //блок else для вывода сообщения об отсутствии интернет-соединения
                 } else {
-                    self?.presenter?.presentData(response: Auth.Model.Response.ResponseType.presentSession(response: nil, error: error))
+                    self?.presenter?.presentData(response: Auth.Model.Response.ResponseType.error(error: error!))
                 }
             }
         }

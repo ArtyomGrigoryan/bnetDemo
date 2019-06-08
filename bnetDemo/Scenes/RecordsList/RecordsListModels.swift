@@ -12,19 +12,19 @@ enum RecordsList {
     enum Model {
         struct Request {
             enum RequestType {
-                case getSession
+              
             }
         }
     
         struct Response {
             enum ResponseType {
-                case presentSession(session: String)
+
             }
         }
     
         struct ViewModel {
             enum ViewModelData {
-                case displaySession(sessionViewModel: SessionViewModel)
+                
             }
         }
     }

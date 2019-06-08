@@ -18,13 +18,29 @@ protocol CreateRecordDataStore {
 
 class CreateRecordInteractor: CreateRecordBusinessLogic, CreateRecordDataStore {
 
+    var session: String = ""
     var presenter: CreateRecordPresentationLogic?
-    var service: CreateRecordService?
-    var session: String = "" 
+    private var fetcher: DataFetcher = NetworkDataFetcher(networking: NetworkService())
   
     func makeRequest(request: CreateRecord.Model.Request.RequestType) {
-        if service == nil {
-            service = CreateRecordService()
+        switch request {
+        case .passUserText(let userText):
+            if userText.trimmingCharacters(in: .whitespaces).isEmpty {
+                self.presenter?.presentData(response: CreateRecord.Model.Response.ResponseType.error(error: "Пожалуйста, напишите что-нибудь в текстовое поле."))
+            } else {
+                //отформатируем данные
+                let userText = userText.trimmingCharacters(in: .whitespaces).capitalized
+                
+                fetcher.addNewRecord(session: session, userText: userText) { [weak self] (response, error) in
+                    if let response = response {
+                        if let _ = response.data {
+                            self?.presenter?.presentData(response: CreateRecord.Model.Response.ResponseType.success)
+                        }
+                    } else {
+                        self?.presenter?.presentData(response: CreateRecord.Model.Response.ResponseType.error(error: error!))
+                    }
+                }
+            }
         }
     }
 }

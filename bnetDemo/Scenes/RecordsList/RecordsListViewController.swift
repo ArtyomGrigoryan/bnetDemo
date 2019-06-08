@@ -49,15 +49,16 @@ class RecordsListViewController: UITableViewController, RecordsListDisplayLogic 
             }
         }
     }
-  
+    
     // MARK: - View lifecycle
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        interactor?.makeRequest(request: RecordsList.Model.Request.RequestType.getSession)
     }
-  
+
     func displayData(viewModel: RecordsList.Model.ViewModel.ViewModelData) {
-        print("See viewModel from RecordsList \(viewModel)")
+
     }
+    
+    @IBAction func unwind(segue: UIStoryboardSegue) {}
 }
