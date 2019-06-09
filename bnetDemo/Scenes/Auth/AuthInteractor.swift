@@ -33,9 +33,9 @@ class AuthInteractor: AuthBusinessLogic, AuthDataStore {
                     } else if let error = response.error {
                         self?.presenter?.presentData(response: Auth.Model.Response.ResponseType.error(error: error))
                     }
-                //блок else для вывода сообщения об отсутствии интернет-соединения
+                //блок else для вывода сообщения об отсутствии интернет-соединения на кириллице
                 } else {
-                    self?.presenter?.presentData(response: Auth.Model.Response.ResponseType.error(error: error!))
+                    self?.presenter?.presentData(response: .error(error: error!))
                 }
             }
         }

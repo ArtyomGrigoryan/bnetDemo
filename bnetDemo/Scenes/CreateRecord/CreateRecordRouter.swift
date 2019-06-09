@@ -20,6 +20,4 @@ class CreateRecordRouter: NSObject, CreateRecordRoutingLogic, CreateRecordDataPa
 
     var dataStore: CreateRecordDataStore?
     weak var viewController: CreateRecordViewController?
-   
-    // MARK: - Routing
 }

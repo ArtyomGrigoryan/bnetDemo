@@ -20,7 +20,7 @@ class RecordsListInteractor: RecordsListBusinessLogic, RecordsListDataStore {
 
     var session: String = ""
     var presenter: RecordsListPresentationLogic?
-    private var fetcher: DataFetcher = NetworkDataFetcher(networking: NetworkService())
+    private var fetcher = NetworkDataFetcher(networking: NetworkService())
   
     func makeRequest(request: RecordsList.Model.Request.RequestType) {
         switch request {

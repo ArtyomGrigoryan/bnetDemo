@@ -20,24 +20,25 @@ class CreateRecordInteractor: CreateRecordBusinessLogic, CreateRecordDataStore {
 
     var session: String = ""
     var presenter: CreateRecordPresentationLogic?
-    private var fetcher: DataFetcher = NetworkDataFetcher(networking: NetworkService())
+    private var fetcher = NetworkDataFetcher(networking: NetworkService())
   
     func makeRequest(request: CreateRecord.Model.Request.RequestType) {
         switch request {
         case .passUserText(let userText):
             if userText.trimmingCharacters(in: .whitespaces).isEmpty {
-                self.presenter?.presentData(response: CreateRecord.Model.Response.ResponseType.error(error: "Пожалуйста, напишите что-нибудь в текстовое поле."))
+                self.presenter?.presentData(response: .error(error: "Пожалуйста, напишите что-нибудь в текстовое поле."))
             } else {
-                //отформатируем данные
                 let userText = userText.trimmingCharacters(in: .whitespaces).capitalized
                 
                 fetcher.addNewRecord(session: session, userText: userText) { [weak self] (response, error) in
                     if let response = response {
                         if let _ = response.data {
-                            self?.presenter?.presentData(response: CreateRecord.Model.Response.ResponseType.success)
+                            self?.presenter?.presentData(response: .success)
+                        } else {
+                            self?.presenter?.presentData(response: .error(error: error!))
                         }
                     } else {
-                        self?.presenter?.presentData(response: CreateRecord.Model.Response.ResponseType.error(error: error!))
+                        self?.presenter?.presentData(response: .error(error: error!))
                     }
                 }
             }

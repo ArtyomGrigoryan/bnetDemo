@@ -16,6 +16,8 @@ class AuthViewController: UIViewController, AuthDisplayLogic {
 
     var interactor: AuthBusinessLogic?
     var router: (NSObjectProtocol & AuthRoutingLogic & AuthDataPassing)?
+    private let loadingView = UIView()
+    private let activityIndicator = UIActivityIndicatorView()
 
     // MARK: Object lifecycle
   
@@ -46,10 +48,12 @@ class AuthViewController: UIViewController, AuthDisplayLogic {
     }
     
     @IBAction func getSessionButtonPressed(_ sender: UIButton) {
+        createActivityIndicator()
         interactor?.makeRequest(request: .getSession)
     }
   
     func displayData(viewModel: Auth.Model.ViewModel.ViewModelData) {
+        removeActivityIndicator()
         switch viewModel {
         case .success:
             router?.routeToRecordsList(segue: nil)
@@ -65,5 +69,28 @@ class AuthViewController: UIViewController, AuthDisplayLogic {
         alertController.addAction(closeAction)
         
         present(alertController, animated: true)
+    }
+    
+    func createActivityIndicator() {
+        loadingView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        loadingView.center = CGPoint(x: view.frame.width / 2, y: view.frame.height / 2)
+        loadingView.backgroundColor = .gray
+        loadingView.clipsToBounds = true
+        loadingView.layer.cornerRadius = 10
+        
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.style = .whiteLarge
+        activityIndicator.center = CGPoint(x: loadingView.frame.size.width / 2, y: loadingView.frame.size.height / 2)
+        
+        loadingView.addSubview(activityIndicator)
+        view.addSubview(loadingView)
+        activityIndicator.startAnimating()
+        view.isUserInteractionEnabled.toggle()
+    }
+    
+    func removeActivityIndicator() {
+        activityIndicator.stopAnimating()
+        loadingView.removeFromSuperview()
+        view.isUserInteractionEnabled.toggle()
     }
 }

@@ -29,12 +29,11 @@
 		2B0BA9E622A6B89B007A109B /* RecordsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0BA9DF22A6B89B007A109B /* RecordsListInteractor.swift */; };
 		2B0BA9E922A6BA6E007A109B /* Records.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B0BA9E822A6BA6E007A109B /* Records.storyboard */; };
 		2B27559122A83FE700E74209 /* CreateRecordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27558A22A83FE700E74209 /* CreateRecordPresenter.swift */; };
-		2B27559222A83FE700E74209 /* CreateRecordWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27558B22A83FE700E74209 /* CreateRecordWorker.swift */; };
-		2B27559322A83FE700E74209 /* CreateRecordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27558C22A83FE700E74209 /* CreateRecordRouter.swift */; };
 		2B27559422A83FE700E74209 /* CreateRecordModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27558D22A83FE700E74209 /* CreateRecordModels.swift */; };
 		2B27559522A83FE700E74209 /* CreateRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27558E22A83FE700E74209 /* CreateRecordViewController.swift */; };
 		2B27559622A83FE700E74209 /* CreateRecordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B27558F22A83FE700E74209 /* CreateRecordInteractor.swift */; };
 		2B7B073B22AC47D70052DAFF /* RecordsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7B073A22AC47D70052DAFF /* RecordsListTableViewCell.swift */; };
+		2B7FA7B922AD42680020F740 /* CreateRecordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7FA7B822AD42670020F740 /* CreateRecordRouter.swift */; };
 		622D5E7FC146CDFC2575716C /* Pods_bnetDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1189F209280936A008E9161 /* Pods_bnetDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,12 +62,11 @@
 		2B0BA9DF22A6B89B007A109B /* RecordsListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsListInteractor.swift; sourceTree = "<group>"; };
 		2B0BA9E822A6BA6E007A109B /* Records.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Records.storyboard; sourceTree = "<group>"; };
 		2B27558A22A83FE700E74209 /* CreateRecordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecordPresenter.swift; sourceTree = "<group>"; };
-		2B27558B22A83FE700E74209 /* CreateRecordWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecordWorker.swift; sourceTree = "<group>"; };
-		2B27558C22A83FE700E74209 /* CreateRecordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecordRouter.swift; sourceTree = "<group>"; };
 		2B27558D22A83FE700E74209 /* CreateRecordModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecordModels.swift; sourceTree = "<group>"; };
 		2B27558E22A83FE700E74209 /* CreateRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecordViewController.swift; sourceTree = "<group>"; };
 		2B27558F22A83FE700E74209 /* CreateRecordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecordInteractor.swift; sourceTree = "<group>"; };
 		2B7B073A22AC47D70052DAFF /* RecordsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsListTableViewCell.swift; sourceTree = "<group>"; };
+		2B7FA7B822AD42670020F740 /* CreateRecordRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRecordRouter.swift; sourceTree = "<group>"; };
 		AB8DAEE6CE726BE9207101FD /* Pods-bnetDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bnetDemo.debug.xcconfig"; path = "Target Support Files/Pods-bnetDemo/Pods-bnetDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		BCD7A95DC629B27D57898550 /* Pods-bnetDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bnetDemo.release.xcconfig"; path = "Target Support Files/Pods-bnetDemo/Pods-bnetDemo.release.xcconfig"; sourceTree = "<group>"; };
 		E1189F209280936A008E9161 /* Pods_bnetDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bnetDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,9 +187,8 @@
 				2B27558E22A83FE700E74209 /* CreateRecordViewController.swift */,
 				2B27558F22A83FE700E74209 /* CreateRecordInteractor.swift */,
 				2B27558A22A83FE700E74209 /* CreateRecordPresenter.swift */,
+				2B7FA7B822AD42670020F740 /* CreateRecordRouter.swift */,
 				2B27558D22A83FE700E74209 /* CreateRecordModels.swift */,
-				2B27558C22A83FE700E74209 /* CreateRecordRouter.swift */,
-				2B27558B22A83FE700E74209 /* CreateRecordWorker.swift */,
 			);
 			path = CreateRecord;
 			sourceTree = "<group>";
@@ -346,9 +343,7 @@
 				2B0BA9BE22A6943E007A109B /* AuthModels.swift in Sources */,
 				2B0BA9E122A6B89B007A109B /* RecordsListPresenter.swift in Sources */,
 				2B7B073B22AC47D70052DAFF /* RecordsListTableViewCell.swift in Sources */,
-				2B27559222A83FE700E74209 /* CreateRecordWorker.swift in Sources */,
 				2B27559622A83FE700E74209 /* CreateRecordInteractor.swift in Sources */,
-				2B27559322A83FE700E74209 /* CreateRecordRouter.swift in Sources */,
 				2B0BA9BB22A6943E007A109B /* AuthPresenter.swift in Sources */,
 				2B0BA9E622A6B89B007A109B /* RecordsListInteractor.swift in Sources */,
 				2B0BA9D122A6A087007A109B /* Connectivity.swift in Sources */,
@@ -359,6 +354,7 @@
 				2B27559422A83FE700E74209 /* CreateRecordModels.swift in Sources */,
 				2B0BA9E322A6B89B007A109B /* RecordsListRouter.swift in Sources */,
 				2B0BA9D422A6A154007A109B /* NetworkDataFetcher.swift in Sources */,
+				2B7FA7B922AD42680020F740 /* CreateRecordRouter.swift in Sources */,
 				2B0BA9BF22A6943E007A109B /* AuthViewController.swift in Sources */,
 				2B0BA9CD22A69FA0007A109B /* AuthService.swift in Sources */,
 				2B0BA9CF22A69FF5007A109B /* NetworkService.swift in Sources */,

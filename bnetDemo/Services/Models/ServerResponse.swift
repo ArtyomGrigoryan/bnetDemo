@@ -19,10 +19,7 @@ struct ResponseData: Decodable {
     let id: String?
 }
 
-struct ServerResponse2Wrapped: Decodable {
-    let response: ServerResponse2
-}
-
+//структуры, необходимые для вывода записей пользователя
 struct ServerResponse2: Decodable {
     let data: [[ResponseData2]]
     let error: String?

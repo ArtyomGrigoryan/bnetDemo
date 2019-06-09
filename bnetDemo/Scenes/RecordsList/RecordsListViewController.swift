@@ -67,6 +67,8 @@ class RecordsListViewController: UITableViewController, RecordsListDisplayLogic 
         }
     }
     
+    // MARK: - Table View
+    
     @IBAction func unwind(segue: UIStoryboardSegue) {
         interactor?.makeRequest(request: .getRecords)
     }

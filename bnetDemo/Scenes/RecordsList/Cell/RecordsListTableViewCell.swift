@@ -47,7 +47,7 @@ class RecordsListTableViewCell: UITableViewCell {
         }
     }
     
-    func getStringFromDate(date: Date) -> String {
+    private func getStringFromDate(date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = DateFormatter.Style.medium
         formatter.timeStyle = DateFormatter.Style.none

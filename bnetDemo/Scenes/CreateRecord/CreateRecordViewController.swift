@@ -16,6 +16,8 @@ class CreateRecordViewController: UIViewController, CreateRecordDisplayLogic {
 
     var interactor: CreateRecordBusinessLogic?
     var router: (NSObjectProtocol & CreateRecordRoutingLogic & CreateRecordDataPassing)?
+    private let loadingView = UIView()
+    private let activityIndicator = UIActivityIndicatorView()
     @IBOutlet weak var textArea: UITextView!
     
     // MARK: - Object lifecycle
@@ -59,6 +61,7 @@ class CreateRecordViewController: UIViewController, CreateRecordDisplayLogic {
     }
     
     func displayData(viewModel: CreateRecord.Model.ViewModel.ViewModelData) {
+        removeActivityIndicator()
         switch viewModel {
         case .presentError(let error):
             errorAlert(title: error)
@@ -68,6 +71,7 @@ class CreateRecordViewController: UIViewController, CreateRecordDisplayLogic {
     }
     
     @IBAction func createRecordBarButtonPressed(_ sender: UIBarButtonItem) {
+        createActivityIndicator()
         let userText = textArea.text!
         interactor?.makeRequest(request: CreateRecord.Model.Request.RequestType.passUserText(userText: userText))
     }
@@ -83,5 +87,36 @@ class CreateRecordViewController: UIViewController, CreateRecordDisplayLogic {
         alertController.addAction(closeAction)
         
         present(alertController, animated: true)
+    }
+    
+    func createActivityIndicator() {
+        var height: CGFloat {
+            let height1 = UIApplication.shared.statusBarFrame.height + ((navigationController?.navigationBar.intrinsicContentSize.height) ?? 0)
+            let height2 = navigationController?.navigationBar.frame.height ?? 0
+            return UIScreen.main.bounds.height - (height1 + height2)
+        }
+        
+        loadingView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        loadingView.center = CGPoint(x: view.frame.width / 2, y: height / 2)
+        loadingView.backgroundColor = .gray
+        loadingView.clipsToBounds = true
+        loadingView.layer.cornerRadius = 10
+        
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.style = .whiteLarge
+        activityIndicator.center = CGPoint(x: loadingView.frame.size.width / 2, y: loadingView.frame.size.height / 2)
+        
+        loadingView.addSubview(activityIndicator)
+        view.addSubview(loadingView)
+        activityIndicator.startAnimating()
+        view.isUserInteractionEnabled.toggle()
+        navigationController!.view.isUserInteractionEnabled.toggle()
+    }
+    
+    func removeActivityIndicator() {
+        activityIndicator.stopAnimating()
+        loadingView.removeFromSuperview()
+        view.isUserInteractionEnabled.toggle()
+        navigationController!.view.isUserInteractionEnabled.toggle()
     }
 }

@@ -21,7 +21,7 @@ class AuthRouter: NSObject, AuthRoutingLogic, AuthDataPassing {
     var dataStore: AuthDataStore?
     weak var viewController: AuthViewController?
   
-    // MARK: Routing
+    // MARK: - Routing
   
     func routeToRecordsList(segue: UIStoryboardSegue?) {
         let storyboard = UIStoryboard(name: "Records", bundle: nil)
@@ -32,12 +32,10 @@ class AuthRouter: NSObject, AuthRoutingLogic, AuthDataPassing {
         self.navigateToDetail(source: self.viewController!, destination: destinationNavigationVC)
     }
     
-    //из какого вью контроллера в какой
     func navigateToDetail(source: AuthViewController, destination: UINavigationController) {
         source.show(destination, sender: nil)
     }
     
-    //из какого источника данных в какой
     func passDataToDetail(source: AuthDataStore, destination: inout RecordsListDataStore) {
         destination.session = source.session
     }
