@@ -55,7 +55,6 @@ class RecordsListViewController: UITableViewController, RecordsListDisplayLogic 
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.estimatedRowHeight = UITableView.automaticDimension
     }
 
@@ -67,7 +66,7 @@ class RecordsListViewController: UITableViewController, RecordsListDisplayLogic 
         }
     }
     
-    // MARK: - Table View
+    // MARK: - Table View Data Source
     
     @IBAction func unwind(segue: UIStoryboardSegue) {
         interactor?.makeRequest(request: .getRecords)

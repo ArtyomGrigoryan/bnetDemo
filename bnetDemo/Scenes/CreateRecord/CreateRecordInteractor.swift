@@ -18,7 +18,7 @@ protocol CreateRecordDataStore {
 
 class CreateRecordInteractor: CreateRecordBusinessLogic, CreateRecordDataStore {
 
-    var session: String = ""
+    var session = ""
     var presenter: CreateRecordPresentationLogic?
     private var fetcher = NetworkDataFetcher(networking: NetworkService())
   

@@ -18,7 +18,7 @@ protocol AuthDataStore {
 
 class AuthInteractor: AuthBusinessLogic, AuthDataStore {
 
-    var session: String = ""
+    var session = ""
     var presenter: AuthPresentationLogic?
     private var fetcher: DataFetcher = NetworkDataFetcher(networking: NetworkService())
   

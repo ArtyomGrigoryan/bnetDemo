@@ -18,7 +18,7 @@ enum RecordsList {
     
         struct Response {
             enum ResponseType {
-                case presentRecords(records: ServerResponse2)
+                case presentResponseData(records: [ResponseData2])
             }
         }
     

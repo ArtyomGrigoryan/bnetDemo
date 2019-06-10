@@ -17,11 +17,11 @@ class RecordsListPresenter: RecordsListPresentationLogic {
   
     func presentData(response: RecordsList.Model.Response.ResponseType) {
         switch response {
-        case .presentRecords(let records):
-            let cells = records.data.flatMap { $0.map { (record) in
+        case .presentResponseData(let records):
+            let cells = records.map { (record)  in
                 cellViewModel(from: record)
-            }}
-        
+            }
+            
             let recordsViewModel = RecordsViewModel(cells: cells)
             
             viewController?.displayData(viewModel: .displayRecords(recordsViewModel: recordsViewModel))
