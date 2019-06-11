@@ -50,11 +50,12 @@ class AuthViewController: UIViewController, AuthDisplayLogic {
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        createActivityIndicator()
     }
     
     func displayData(viewModel: Auth.Model.ViewModel.ViewModelData) {
         DispatchQueue.main.async {
-            self.removeActivityIndicator()
+            self.hideActivityIndicator()
             switch viewModel {
             case .success:
                 self.router?.routeToRecordsList(segue: nil)
@@ -67,7 +68,7 @@ class AuthViewController: UIViewController, AuthDisplayLogic {
     // MARK: - @IBActions
     
     @IBAction func getSessionButtonPressed(_ sender: UIButton) {
-        createActivityIndicator()
+        showActivityIndicator()
         interactor?.makeRequest(request: .getSession)
     }
  
@@ -94,14 +95,19 @@ class AuthViewController: UIViewController, AuthDisplayLogic {
         activityIndicator.center = CGPoint(x: loadingView.frame.size.width / 2, y: loadingView.frame.size.height / 2)
         
         loadingView.addSubview(activityIndicator)
+        loadingView.isHidden.toggle()
         view.addSubview(loadingView)
+    }
+    
+    func showActivityIndicator() {
+        loadingView.isHidden.toggle()
         activityIndicator.startAnimating()
         view.isUserInteractionEnabled.toggle()
     }
     
-    func removeActivityIndicator() {
+    func hideActivityIndicator() {
+        loadingView.isHidden.toggle()
         activityIndicator.stopAnimating()
-        loadingView.removeFromSuperview()
         view.isUserInteractionEnabled.toggle()
     }
 }

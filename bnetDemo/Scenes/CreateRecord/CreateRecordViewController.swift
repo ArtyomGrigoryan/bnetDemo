@@ -65,17 +65,18 @@ class CreateRecordViewController: UIViewController, CreateRecordDisplayLogic {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        createActivityIndicator()
         textArea.becomeFirstResponder()
     }
     
     func displayData(viewModel: CreateRecord.Model.ViewModel.ViewModelData) {
         DispatchQueue.main.async {
-            self.removeActivityIndicator()
+            self.hideActivityIndicator()
             switch viewModel {
-            case .presentFailure(let error):
-                self.errorAlert(title: error)
             case .success:
                 self.performSegue(withIdentifier: "RecordsList", sender: nil)
+            case .presentFailure(let error):
+                self.errorAlert(title: error)
             }
         }
     }
@@ -83,7 +84,7 @@ class CreateRecordViewController: UIViewController, CreateRecordDisplayLogic {
     // MARK: - @IBActions
     
     @IBAction func createRecordBarButtonPressed(_ sender: UIBarButtonItem) {
-        createActivityIndicator()
+        showActivityIndicator()
         let userText = textArea.text!
         interactor?.makeRequest(request: CreateRecord.Model.Request.RequestType.passUserText(userText: userText))
     }
@@ -104,14 +105,8 @@ class CreateRecordViewController: UIViewController, CreateRecordDisplayLogic {
     }
     
     func createActivityIndicator() {
-        var height: CGFloat {
-            let height1 = UIApplication.shared.statusBarFrame.height + ((navigationController?.navigationBar.intrinsicContentSize.height) ?? 0)
-            let height2 = navigationController?.navigationBar.frame.height ?? 0
-            return UIScreen.main.bounds.height - (height1 + height2)
-        }
-        
         loadingView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
-        loadingView.center = CGPoint(x: view.frame.width / 2, y: height / 2)
+        loadingView.center = CGPoint(x: view.frame.width / 2, y: view.frame.height / 2)
         loadingView.backgroundColor = .gray
         loadingView.clipsToBounds = true
         loadingView.layer.cornerRadius = 10
@@ -121,16 +116,19 @@ class CreateRecordViewController: UIViewController, CreateRecordDisplayLogic {
         activityIndicator.center = CGPoint(x: loadingView.frame.size.width / 2, y: loadingView.frame.size.height / 2)
         
         loadingView.addSubview(activityIndicator)
+        loadingView.isHidden.toggle()
         view.addSubview(loadingView)
-        activityIndicator.startAnimating()
-        view.isUserInteractionEnabled.toggle()
-        navigationController!.view.isUserInteractionEnabled.toggle()
     }
     
-    func removeActivityIndicator() {
-        activityIndicator.stopAnimating()
-        loadingView.removeFromSuperview()
+    func showActivityIndicator() {
+        loadingView.isHidden.toggle()
+        activityIndicator.startAnimating()
         view.isUserInteractionEnabled.toggle()
-        navigationController!.view.isUserInteractionEnabled.toggle()
+    }
+    
+    func hideActivityIndicator() {
+        loadingView.isHidden.toggle()
+        activityIndicator.stopAnimating()
+        view.isUserInteractionEnabled.toggle()
     }
 }

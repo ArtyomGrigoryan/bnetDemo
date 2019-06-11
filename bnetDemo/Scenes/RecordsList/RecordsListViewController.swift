@@ -21,6 +21,8 @@ class RecordsListViewController: UITableViewController, RecordsListDisplayLogic 
     
     // MARK: - Private variables
     
+    private let loadingView = UIView()
+    private let activityIndicator = UIActivityIndicatorView()
     private var recordsViewModel = RecordsViewModel(cells: [])
 
     // MARK: - Object lifecycle
