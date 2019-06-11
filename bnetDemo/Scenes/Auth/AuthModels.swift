@@ -19,14 +19,14 @@ enum Auth {
         struct Response {
             enum ResponseType {
                 case success
-                case error(error: String)
+                case failure(error: String)
             }
         }
     
         struct ViewModel {
             enum ViewModelData {
                 case success
-                case error(errorTitle: String)
+                case presentFailure(errorTitle: String)
             }
         }
     }

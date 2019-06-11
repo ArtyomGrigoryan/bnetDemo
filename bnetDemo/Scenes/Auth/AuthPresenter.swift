@@ -20,8 +20,8 @@ class AuthPresenter: AuthPresentationLogic {
         switch response {
         case .success:
             viewController?.displayData(viewModel: .success)
-        case .error(let error):
-            viewController?.displayData(viewModel: .error(errorTitle: error))
+        case .failure(let error):
+            viewController?.displayData(viewModel: .presentFailure(errorTitle: error))
         }
     }
 }

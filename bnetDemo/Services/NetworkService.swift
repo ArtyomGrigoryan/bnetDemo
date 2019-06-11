@@ -17,8 +17,9 @@ class NetworkService: Networking {
     func request(params: [String : String], header: [String : String], completion: @escaping ([String : Any]?, String?) -> Void) {
         if Connectivity.isConnectedToInternet {
             guard let url = URL(string: API.host) else { return }
+            let queue = DispatchQueue(label: "bnet", qos: .background, attributes: .concurrent)
    
-            Alamofire.request(url, method: .post, parameters: params, encoding: URLEncoding(destination: .httpBody), headers: header).responseJSON { (response) in
+            Alamofire.request(url, method: .post, parameters: params, encoding: URLEncoding(destination: .httpBody), headers: header).responseJSON(queue: queue) { (response) in
                 switch response.result {
                 case .success(let value):
                     let json = value as! [String: Any]

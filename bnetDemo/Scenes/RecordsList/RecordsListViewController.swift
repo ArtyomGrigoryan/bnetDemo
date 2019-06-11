@@ -14,8 +14,13 @@ protocol RecordsListDisplayLogic: class {
 
 class RecordsListViewController: UITableViewController, RecordsListDisplayLogic {
 
+    // MARK: - Public variables
+    
     var interactor: RecordsListBusinessLogic?
     var router: (NSObjectProtocol & RecordsListRoutingLogic & RecordsListDataPassing)?
+    
+    // MARK: - Private variables
+    
     private var recordsViewModel = RecordsViewModel(cells: [])
 
     // MARK: - Object lifecycle
@@ -62,15 +67,19 @@ class RecordsListViewController: UITableViewController, RecordsListDisplayLogic 
         switch viewModel {
         case .displayRecords(let recordsViewModel):
             self.recordsViewModel = recordsViewModel
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     
-    // MARK: - Table View Data Source
+    // MARK: - @IBActions
     
     @IBAction func unwind(segue: UIStoryboardSegue) {
         interactor?.makeRequest(request: .getRecords)
     }
+    
+    // MARK: - Table View Data Source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recordsViewModel.cells.count

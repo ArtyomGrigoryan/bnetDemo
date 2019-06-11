@@ -13,20 +13,21 @@ protocol CreateRecordBusinessLogic {
 }
 
 protocol CreateRecordDataStore {
-    var session: String { get set }
+    var session: String! { get set }
 }
 
 class CreateRecordInteractor: CreateRecordBusinessLogic, CreateRecordDataStore {
 
-    var session = ""
+    var session: String!
     var presenter: CreateRecordPresentationLogic?
     private var fetcher = NetworkDataFetcher(networking: NetworkService())
+    private let emptyTextAreaErrorMessage = "Пожалуйста, напишите что-нибудь в текстовое поле."
   
     func makeRequest(request: CreateRecord.Model.Request.RequestType) {
         switch request {
         case .passUserText(let userText):
             if userText.trimmingCharacters(in: .whitespaces).isEmpty {
-                self.presenter?.presentData(response: .error(error: "Пожалуйста, напишите что-нибудь в текстовое поле."))
+                self.presenter?.presentData(response: .failure(error: emptyTextAreaErrorMessage))
             } else {
                 let userText = userText.trimmingCharacters(in: .whitespaces).capitalized
                 
@@ -35,10 +36,10 @@ class CreateRecordInteractor: CreateRecordBusinessLogic, CreateRecordDataStore {
                         if let _ = response.data {
                             self?.presenter?.presentData(response: .success)
                         } else {
-                            self?.presenter?.presentData(response: .error(error: error!))
+                            self?.presenter?.presentData(response: .failure(error: error!))
                         }
                     } else {
-                        self?.presenter?.presentData(response: .error(error: error!))
+                        self?.presenter?.presentData(response: .failure(error: error!))
                     }
                 }
             }

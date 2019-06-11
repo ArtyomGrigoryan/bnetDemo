@@ -14,11 +14,19 @@ protocol CreateRecordDisplayLogic: class {
 
 class CreateRecordViewController: UIViewController, CreateRecordDisplayLogic {
 
+    // MARK: - Public variables
+    
     var interactor: CreateRecordBusinessLogic?
     var router: (NSObjectProtocol & CreateRecordRoutingLogic & CreateRecordDataPassing)?
+    
+    // MARK: - Private variables
+    
     private let loadingView = UIView()
     private let activityIndicator = UIActivityIndicatorView()
-    @IBOutlet weak var textArea: UITextView!
+    
+    // MARK: - @IBOutlets
+    
+    @IBOutlet private weak var textArea: UITextView!
     
     // MARK: - Object lifecycle
   
@@ -61,14 +69,18 @@ class CreateRecordViewController: UIViewController, CreateRecordDisplayLogic {
     }
     
     func displayData(viewModel: CreateRecord.Model.ViewModel.ViewModelData) {
-        removeActivityIndicator()
-        switch viewModel {
-        case .presentError(let error):
-            errorAlert(title: error)
-        case .success:
-            performSegue(withIdentifier: "RecordsList", sender: nil)
+        DispatchQueue.main.async {
+            self.removeActivityIndicator()
+            switch viewModel {
+            case .presentFailure(let error):
+                self.errorAlert(title: error)
+            case .success:
+                self.performSegue(withIdentifier: "RecordsList", sender: nil)
+            }
         }
     }
+    
+    // MARK: - @IBActions
     
     @IBAction func createRecordBarButtonPressed(_ sender: UIBarButtonItem) {
         createActivityIndicator()
@@ -79,6 +91,8 @@ class CreateRecordViewController: UIViewController, CreateRecordDisplayLogic {
     @IBAction func dismiss(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
+    
+    // MARK: - Helpers
     
     func errorAlert(title: String) {
         let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)

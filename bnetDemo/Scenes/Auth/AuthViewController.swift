@@ -14,19 +14,24 @@ protocol AuthDisplayLogic: class {
 
 class AuthViewController: UIViewController, AuthDisplayLogic {
 
+    // MARK: - Public variables
+    
     var interactor: AuthBusinessLogic?
     var router: (NSObjectProtocol & AuthRoutingLogic & AuthDataPassing)?
+    
+    // MARK: - Private variables
+    
     private let loadingView = UIView()
     private let activityIndicator = UIActivityIndicatorView()
 
-    // MARK: Object lifecycle
+    // MARK: - Object lifecycle
   
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
   
-    // MARK: Setup
+    // MARK: - Setup
   
     private func setup() {
         let viewController        = self
@@ -41,26 +46,32 @@ class AuthViewController: UIViewController, AuthDisplayLogic {
         router.dataStore          = interactor
     }
 
-    // MARK: View lifecycle
+    // MARK: - View lifecycle
   
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    func displayData(viewModel: Auth.Model.ViewModel.ViewModelData) {
+        DispatchQueue.main.async {
+            self.removeActivityIndicator()
+            switch viewModel {
+            case .success:
+                self.router?.routeToRecordsList(segue: nil)
+            case .presentFailure(let errorTitle):
+                self.errorAlert(title: errorTitle)
+            }
+        }
+    }
+    
+    // MARK: - @IBActions
+    
     @IBAction func getSessionButtonPressed(_ sender: UIButton) {
         createActivityIndicator()
         interactor?.makeRequest(request: .getSession)
     }
-  
-    func displayData(viewModel: Auth.Model.ViewModel.ViewModelData) {
-        removeActivityIndicator()
-        switch viewModel {
-        case .success:
-            router?.routeToRecordsList(segue: nil)
-        case .error(let errorTitle):
-            errorAlert(title: errorTitle)
-        }
-    }
+ 
+    // MARK: - Helpers
     
     func errorAlert(title: String) {
         let alertController = UIAlertController(title: title, message: "Повторите попытку.", preferredStyle: .alert)

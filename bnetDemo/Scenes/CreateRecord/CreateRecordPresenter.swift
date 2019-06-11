@@ -19,8 +19,8 @@ class CreateRecordPresenter: CreateRecordPresentationLogic {
         switch response {
         case .success:
              viewController?.displayData(viewModel: .success)
-        case .error(let error):
-            viewController?.displayData(viewModel: .presentError(error: error))
+        case .failure(let error):
+            viewController?.displayData(viewModel: .presentFailure(error: error))
         }
     }
 }

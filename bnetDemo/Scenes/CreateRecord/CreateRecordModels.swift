@@ -19,14 +19,14 @@ enum CreateRecord {
         struct Response {
             enum ResponseType {
                 case success
-                case error(error: String)
+                case failure(error: String)
             }
         }
     
         struct ViewModel {
             enum ViewModelData {
                 case success
-                case presentError(error: String)
+                case presentFailure(error: String)
             }
         }
     }

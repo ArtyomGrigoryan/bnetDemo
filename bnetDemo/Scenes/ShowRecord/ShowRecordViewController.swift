@@ -14,8 +14,13 @@ protocol ShowRecordDisplayLogic: class {
 
 class ShowRecordViewController: UIViewController, ShowRecordDisplayLogic {
 
+    // MARK: - Public variables
+    
     var interactor: ShowRecordBusinessLogic?
     var router: (NSObjectProtocol & ShowRecordRoutingLogic & ShowRecordDataPassing)?
+    
+    // MARK: - @IBOutlets
+    
     @IBOutlet private weak var textArea: UITextView!
     
     // MARK: - Object lifecycle
@@ -50,7 +55,9 @@ class ShowRecordViewController: UIViewController, ShowRecordDisplayLogic {
     func displayData(viewModel: ShowRecord.Model.ViewModel.ViewModelData) {
         switch viewModel {
         case .displayRecord(let recordBody):
-            textArea.text = recordBody
+            DispatchQueue.main.async {
+                self.textArea.text = recordBody
+            }
         }
     }
 }

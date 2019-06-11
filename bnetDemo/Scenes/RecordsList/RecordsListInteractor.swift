@@ -13,13 +13,13 @@ protocol RecordsListBusinessLogic {
 }
 
 protocol RecordsListDataStore {
-    var session: String { get set }
-    var records: [ResponseData2]? { get set }
+    var session: String! { get set }
+    var records: [ResponseData2]? { get }
 }
 
 class RecordsListInteractor: RecordsListBusinessLogic, RecordsListDataStore {
 
-    var session = ""
+    var session: String!
     var records: [ResponseData2]?
     var presenter: RecordsListPresentationLogic?
     private var fetcher = NetworkDataFetcher(networking: NetworkService())
@@ -30,7 +30,7 @@ class RecordsListInteractor: RecordsListBusinessLogic, RecordsListDataStore {
             fetcher.getRecords(session: session) { [weak self] (response, error) in
                 guard let self = self, let response = response else { return }
                 
-                _ = response.data.compactMap {
+                _ = response.data.map {
                     self.records = $0
                 }
                 

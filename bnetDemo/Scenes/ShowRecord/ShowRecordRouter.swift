@@ -20,7 +20,5 @@ class ShowRecordRouter: NSObject, ShowRecordRoutingLogic, ShowRecordDataPassing 
     
     var dataStore: ShowRecordDataStore?
     weak var viewController: ShowRecordViewController?
-  
-    // MARK: - Routing
-  
+    
 }

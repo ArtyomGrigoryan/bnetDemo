@@ -13,14 +13,14 @@ protocol AuthBusinessLogic {
 }
 
 protocol AuthDataStore {
-    var session: String { get set }
+    var session: String! { get }
 }
 
 class AuthInteractor: AuthBusinessLogic, AuthDataStore {
 
-    var session = ""
+    var session: String!
     var presenter: AuthPresentationLogic?
-    private var fetcher: DataFetcher = NetworkDataFetcher(networking: NetworkService())
+    private var fetcher = NetworkDataFetcher(networking: NetworkService())
   
     func makeRequest(request: Auth.Model.Request.RequestType) {
         switch request {
@@ -29,13 +29,13 @@ class AuthInteractor: AuthBusinessLogic, AuthDataStore {
                 if let response = response {
                     if let data = response.data {
                         self?.session = data.session!
-                        self?.presenter?.presentData(response: Auth.Model.Response.ResponseType.success)
+                        self?.presenter?.presentData(response: .success)
                     } else if let error = response.error {
-                        self?.presenter?.presentData(response: Auth.Model.Response.ResponseType.error(error: error))
+                        self?.presenter?.presentData(response: .failure(error: error))
                     }
                 //блок else для вывода сообщения об отсутствии интернет-соединения на кириллице
                 } else {
-                    self?.presenter?.presentData(response: .error(error: error!))
+                    self?.presenter?.presentData(response: .failure(error: error!))
                 }
             }
         }
