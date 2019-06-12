@@ -28,13 +28,14 @@ class RecordsListInteractor: RecordsListBusinessLogic, RecordsListDataStore {
         switch request {
         case .getRecords:
             fetcher.getRecords(session: session) { [weak self] (response, error) in
-                guard let self = self, let response = response else { return }
-                
-                _ = response.data.map {
-                    self.records = $0
+                if let records = response?.data {
+                    _ = records.map {
+                        self?.records = $0
+                    }
+                    self?.presenter?.presentData(response: .presentResponseData(records: self!.records!))
+                } else {
+                    self?.presenter?.presentData(response: .presentError(error: error!))
                 }
-                
-                self.presenter?.presentData(response: .presentResponseData(records: self.records!))
             }
         }
     }

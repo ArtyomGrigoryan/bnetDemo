@@ -26,16 +26,11 @@ class AuthInteractor: AuthBusinessLogic, AuthDataStore {
         switch request {
         case .getSession:
             fetcher.getSession { [weak self] (response, error) in
-                if let response = response {
-                    if let data = response.data {
-                        self?.session = data.session!
-                        self?.presenter?.presentData(response: .success)
-                    } else if let error = response.error {
-                        self?.presenter?.presentData(response: .failure(error: error))
-                    }
-                //блок else для вывода сообщения об отсутствии интернет-соединения на кириллице
+                if let data = response?.data {
+                    self?.session = data.session!
+                    self?.presenter?.presentData(response: .success)
                 } else {
-                    self?.presenter?.presentData(response: .failure(error: error!))
+                    self?.presenter?.presentData(response: .failure(error: response!.error!))
                 }
             }
         }

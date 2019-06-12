@@ -15,21 +15,17 @@ protocol Networking {
 
 class NetworkService: Networking {
     func request(params: [String : String], header: [String : String], completion: @escaping ([String : Any]?, String?) -> Void) {
-        if Connectivity.isConnectedToInternet {
-            guard let url = URL(string: API.host) else { return }
-            let queue = DispatchQueue(label: "bnet", qos: .background, attributes: .concurrent)
+        guard let url = URL(string: API.host) else { return }
+        let queue = DispatchQueue(label: "bnet", qos: .background, attributes: .concurrent)
    
-            Alamofire.request(url, method: .post, parameters: params, encoding: URLEncoding(destination: .httpBody), headers: header).responseJSON(queue: queue) { (response) in
-                switch response.result {
-                case .success(let value):
-                    let json = value as! [String: Any]
-                    completion(json, nil)
-                case .failure(let error):
-                    completion(nil, error.localizedDescription)
-                }
+        Alamofire.request(url, method: .post, parameters: params, encoding: URLEncoding(destination: .httpBody), headers: header).responseJSON(queue: queue) { (response) in
+            switch response.result {
+            case .success(let value):
+                let json = value as! [String: Any]
+                completion(json, nil)
+            case .failure(let error):
+                completion(nil, error.localizedDescription)
             }
-        } else {
-            completion(nil, "Отсутствует интернет-соединение")
         }
     }
 }

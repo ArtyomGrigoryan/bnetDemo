@@ -32,12 +32,8 @@ class CreateRecordInteractor: CreateRecordBusinessLogic, CreateRecordDataStore {
                 let userText = userText.trimmingCharacters(in: .whitespaces).capitalized
                 
                 fetcher.addNewRecord(session: session, userText: userText) { [weak self] (response, error) in
-                    if let response = response {
-                        if let _ = response.data {
-                            self?.presenter?.presentData(response: .success)
-                        } else {
-                            self?.presenter?.presentData(response: .failure(error: error!))
-                        }
+                    if let _ = response?.data {
+                        self?.presenter?.presentData(response: .success)
                     } else {
                         self?.presenter?.presentData(response: .failure(error: error!))
                     }

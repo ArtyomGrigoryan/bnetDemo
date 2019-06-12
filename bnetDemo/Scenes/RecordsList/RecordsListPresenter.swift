@@ -25,6 +25,8 @@ class RecordsListPresenter: RecordsListPresentationLogic {
             let recordsViewModel = RecordsViewModel(cells: cells)
             
             viewController?.displayData(viewModel: .displayRecords(recordsViewModel: recordsViewModel))
+        case .presentError(let error):
+            viewController?.displayData(viewModel: .displayError(error: error))
         }
     }
     

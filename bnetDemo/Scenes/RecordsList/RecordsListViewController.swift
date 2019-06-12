@@ -21,8 +21,6 @@ class RecordsListViewController: UITableViewController, RecordsListDisplayLogic 
     
     // MARK: - Private variables
     
-    private let loadingView = UIView()
-    private let activityIndicator = UIActivityIndicatorView()
     private var recordsViewModel = RecordsViewModel(cells: [])
 
     // MARK: - Object lifecycle
@@ -66,11 +64,13 @@ class RecordsListViewController: UITableViewController, RecordsListDisplayLogic 
     }
 
     func displayData(viewModel: RecordsList.Model.ViewModel.ViewModelData) {
-        switch viewModel {
-        case .displayRecords(let recordsViewModel):
-            self.recordsViewModel = recordsViewModel
-            DispatchQueue.main.async {
+        DispatchQueue.main.async {
+            switch viewModel {
+            case .displayRecords(let recordsViewModel):
+                self.recordsViewModel = recordsViewModel
                 self.tableView.reloadData()
+            case .displayError(let error):
+                self.errorAlert(title: error)
             }
         }
     }
@@ -94,5 +94,16 @@ class RecordsListViewController: UITableViewController, RecordsListDisplayLogic 
         cell.set(viewModel: cellViewModel)
         
         return cell
+    }
+    
+    // MARK: - Helpers
+    
+    func errorAlert(title: String) {
+        let alertController = UIAlertController(title: title, message: "Повторите попытку.", preferredStyle: .alert)
+        let closeAction = UIAlertAction(title: "OK", style: .default)
+        
+        alertController.addAction(closeAction)
+        
+        present(alertController, animated: true)
     }
 }
