@@ -13,18 +13,18 @@ protocol ShowRecordBusinessLogic {
 }
 
 protocol ShowRecordDataStore {
-    var records: ResponseData2? { get set }
+    var record: ResponseData2? { get set }
 }
 
 class ShowRecordInteractor: ShowRecordBusinessLogic, ShowRecordDataStore {
 
-    var records: ResponseData2?
+    var record: ResponseData2?
     var presenter: ShowRecordPresentationLogic?
   
     func makeRequest(request: ShowRecord.Model.Request.RequestType) {
         switch request {
         case .getRecord:
-            self.presenter?.presentData(response: .presentResponseData(records: self.records!))
+            self.presenter?.presentData(response: .presentResponseData(records: self.record!))
         }
     }
 }

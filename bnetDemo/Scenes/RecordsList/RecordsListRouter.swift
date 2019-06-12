@@ -32,7 +32,7 @@ class RecordsListRouter: NSObject, RecordsListRoutingLogic, RecordsListDataPassi
     
     func passDataToShowRecord(source: RecordsListDataStore, destination: inout ShowRecordDataStore) {
         let selectedRow = viewController?.tableView.indexPathForSelectedRow?.row
-        destination.records = source.records![selectedRow!]
+        destination.record = source.records![selectedRow!]
     }
   
     func routeToCreateRecord(segue: UIStoryboardSegue) {
