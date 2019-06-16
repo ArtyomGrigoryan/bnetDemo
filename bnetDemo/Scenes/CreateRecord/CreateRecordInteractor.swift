@@ -35,7 +35,7 @@ class CreateRecordInteractor: CreateRecordBusinessLogic, CreateRecordDataStore {
                     if let _ = response?.data {
                         self?.presenter?.presentData(response: .success)
                     } else {
-                        self?.presenter?.presentData(response: .failure(error: error!))
+                        self?.presenter?.presentData(response: .failure(error: error!.localizedDescription))
                     }
                 }
             }

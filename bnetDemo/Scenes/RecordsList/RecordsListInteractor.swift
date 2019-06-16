@@ -34,7 +34,7 @@ class RecordsListInteractor: RecordsListBusinessLogic, RecordsListDataStore {
                     }
                     self?.presenter?.presentData(response: .presentResponseData(records: self!.records!))
                 } else {
-                    self?.presenter?.presentData(response: .presentError(error: error!))
+                    self?.presenter?.presentData(response: .presentError(error: error!.localizedDescription))
                 }
             }
         }

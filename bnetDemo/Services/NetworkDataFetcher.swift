@@ -9,9 +9,9 @@
 import Foundation
 
 protocol DataFetcher {
-    func addNewRecord(session: String, userText: String, completion: @escaping (ServerResponse?, String?) -> Void)
-    func getRecords(session: String, completion: @escaping (ServerResponse2?, String?) -> Void)
-    func getSession(completion: @escaping (ServerResponse?, String?) -> Void)
+    func addNewRecord(session: String, userText: String, completion: @escaping (ServerResponse?, Error?) -> Void)
+    func getRecords(session: String, completion: @escaping (ServerResponse2?, Error?) -> Void)
+    func getSession(completion: @escaping (ServerResponse?, Error?) -> Void)
 }
 
 struct NetworkDataFetcher: DataFetcher {
@@ -22,7 +22,7 @@ struct NetworkDataFetcher: DataFetcher {
         self.networking = networking
     }
     
-    func getRecords(session: String, completion: @escaping (ServerResponse2?, String?) -> Void) {
+    func getRecords(session: String, completion: @escaping (ServerResponse2?, Error?) -> Void) {
         let parameters = ["a": API.getEntries,
                           "session": session]
         
@@ -37,7 +37,7 @@ struct NetworkDataFetcher: DataFetcher {
         }
     }
     
-    func addNewRecord(session: String, userText: String, completion: @escaping (ServerResponse?, String?) -> Void) {
+    func addNewRecord(session: String, userText: String, completion: @escaping (ServerResponse?, Error?) -> Void) {
         let parameters = ["a": API.addEntry,
                           "session": session,
                           "body": userText]
@@ -53,7 +53,7 @@ struct NetworkDataFetcher: DataFetcher {
         }
     }
     
-    func getSession(completion: @escaping (ServerResponse?, String?) -> Void) {
+    func getSession(completion: @escaping (ServerResponse?, Error?) -> Void) {
         let parameters = ["a": API.newsSession]
 
         networking.request(params: parameters, header: header) { (json, error) in

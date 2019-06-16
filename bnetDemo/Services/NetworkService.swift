@@ -10,11 +10,11 @@ import Alamofire
 import Foundation
 
 protocol Networking {
-    func request(params: [String: String], header: [String: String], completion: @escaping ([String : Any]?, String?) -> Void)
+    func request(params: [String: String], header: [String: String], completion: @escaping ([String : Any]?, Error?) -> Void)
 }
 
 class NetworkService: Networking {
-    func request(params: [String : String], header: [String : String], completion: @escaping ([String : Any]?, String?) -> Void) {
+    func request(params: [String : String], header: [String : String], completion: @escaping ([String : Any]?, Error?) -> Void) {
         guard let url = URL(string: API.host) else { return }
         let queue = DispatchQueue(label: "bnet", qos: .background, attributes: .concurrent)
    
@@ -24,7 +24,7 @@ class NetworkService: Networking {
                 let json = value as! [String: Any]
                 completion(json, nil)
             case .failure(let error):
-                completion(nil, error.localizedDescription)
+                completion(nil, error)
             }
         }
     }
