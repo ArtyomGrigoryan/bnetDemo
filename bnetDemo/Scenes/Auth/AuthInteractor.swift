@@ -27,10 +27,15 @@ class AuthInteractor: AuthBusinessLogic, AuthDataStore {
         case .getSession:
             fetcher.getSession { [weak self] (response, error) in
                 if let data = response?.data {
+                    print(1)
                     self?.session = data.session!
                     self?.presenter?.presentData(response: .success)
+                } else if let err = response?.error {
+                    print(2)
+                    self?.presenter?.presentData(response: .failure(error: err))
                 } else {
-                    self?.presenter?.presentData(response: .failure(error: response!.error!))
+                    print(3)
+                    self?.presenter?.presentData(response: .failure(error: error!.localizedDescription))
                 }
             }
         }

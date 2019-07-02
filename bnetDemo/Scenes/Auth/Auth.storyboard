@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dQG-gk-oeC">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,11 +18,11 @@
                         <viewControllerLayoutGuide type="bottom" id="i6T-a2-EnC"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SL6-qi-RVB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qBp-9u-99M">
-                                <rect key="frame" x="109" y="420" width="196" height="57"/>
+                                <rect key="frame" x="107" y="315.5" width="161" height="36"/>
                                 <color key="backgroundColor" red="0.93446809053421021" green="0.25472870469093323" blue="0.025740830227732658" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Получить сессию">
@@ -35,10 +35,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="i6T-a2-EnC" firstAttribute="top" secondItem="qBp-9u-99M" secondAttribute="bottom" constant="385" id="03O-OF-Kkq"/>
-                            <constraint firstItem="qBp-9u-99M" firstAttribute="leading" secondItem="SL6-qi-RVB" secondAttribute="leading" constant="109" id="Zfy-V6-nA8"/>
-                            <constraint firstItem="qBp-9u-99M" firstAttribute="top" secondItem="YY0-Ek-pmE" secondAttribute="bottom" constant="376" id="Zn3-UB-JrH"/>
-                            <constraint firstAttribute="trailing" secondItem="qBp-9u-99M" secondAttribute="trailing" constant="109" id="g8I-bp-iMM"/>
+                            <constraint firstItem="qBp-9u-99M" firstAttribute="centerX" secondItem="SL6-qi-RVB" secondAttribute="centerX" id="dsL-X1-KIu"/>
+                            <constraint firstItem="qBp-9u-99M" firstAttribute="centerY" secondItem="SL6-qi-RVB" secondAttribute="centerY" id="myE-R3-wlQ"/>
                         </constraints>
                     </view>
                 </viewController>
